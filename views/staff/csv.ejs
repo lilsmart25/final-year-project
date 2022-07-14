@@ -1,0 +1,6 @@
+ S/N, Type OF Leave, Date Requested, State, Date to Start, Date To End,Note, Requested To ?,Reason
+<%var x = 1%>
+<%data.forEach(value=>{%>
+<%=x%>,<%= value.typeOfLeave%>,<%= dayjs(value.createdAt).format("YYYY-MM-DD")%>,<%= value.state%>,<%= value.start%>,<%= value.end%>,<%= value.note%>,<%= value.requestTo%>,<%= value.reason%>
+<%x++%>
+<%})%>
