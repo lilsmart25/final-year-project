@@ -22,7 +22,7 @@ var staffRouter = require('./routes/staff');
 var hodRouter = require('./routes/hod');
 
 // DataBase Setup
-var db = config.local // change location of database
+var db = config.cloud // change location of database
 var app = express();
 
 // mongodb connector 
