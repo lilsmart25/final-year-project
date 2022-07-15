@@ -10,5 +10,3 @@ histoy  Done
 create deperment -- Done
 create new staff -- Done
 manage staff -- done
-
-    Eliable leave table Done
