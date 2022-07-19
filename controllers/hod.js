@@ -53,18 +53,29 @@ exports.postEnd=(req,res)=>{
     console.log(req.body);
     console.log("from the server");
     const lessThan5 = getDistanceFromLatLonInKm(centerLat,centerLng,d.lat,d.lon)
-    console.log(lessThan5<6);
-    if(!lessThan5 < 6){
-    res.json({success:true})
-    }else{
-        res.render('hod/message', {
-            data:{
-                message:`You Are ${lessThan5}km away from the office \nleave Not Approved`,
-                title:"Error"
-                },
-            user:req.user,
-        })
-    }
+    user.findOne({_id:req.user._id}).then(users =>{
+        console.log(users);
+        if(users.isOnLeave){
+            user.updateOne({_id:users._id},{"isOnLeave":true}).then(me=>{
+                leave.updateOne({userEmail:users.email,state:"Running"},{"state":"Ended"}).then( ddd =>{
+                    res.end()
+                    console.log("Leave Ended");
+                }).catch(
+                    err =>{
+                    res.end()
+                    console.log("Leave Ended");
+                    }
+                )
+           }).catch(err=>{
+               console.log(err);
+           })
+        }else{
+            console.log("no leave to end");
+            res.end()
+        }
+    }).catch(err=>{
+        console.log(err)
+    })
 }
 /**Login
  * Staff Get Login
