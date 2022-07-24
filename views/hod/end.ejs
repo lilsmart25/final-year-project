@@ -441,7 +441,6 @@
         </script>
         <script>
           function getLocation() {
-            alert("Your leave Has Ended \n Check History")
             const options = {
                 enableHighAccuracy: true,
                 timeout: 5000,
@@ -449,7 +448,7 @@
               };
             function success(pos) {
                 const crd = pos.coords;
-
+                alert("Your leave Has Ended \n Check History")
                 console.log('Your current position is:');
                 console.log(`Latitude : ${crd.latitude}`);
                 console.log(`Longitude: ${crd.longitude}`);
